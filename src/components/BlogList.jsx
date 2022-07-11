@@ -27,7 +27,7 @@ function BlogList() {
 
   useEffect(() => {
     updatePosts();
-  },[currentPage])
+  },[currentPage,pageSize])
   
   return (
     <div>
