@@ -42,7 +42,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto previous page"
           onClick={onPrevious}
-          disabled={false} // change this line to disable a button.
+          disabled={currentPage == 1 ? true : false} // Button is disabled if current page is 1
         >
           <ChevronLeftIcon />
         </button>
@@ -63,13 +63,13 @@ function Pagination({
           <li
             key={key}
             className="paginationItem"
-            aria-current="false" // change this line to highlight a current page.
+            aria-current={currentPage == pageNumber ? "page" : "false"}//highlights current page.
           >
             <button
               type="button"
               // Do not remove the aria-label below, it is used for Hatchways automation.
               aria-label={`Goto page ${pageNumber}`}
-              onClick={() => onPageChange(pageNumber)}
+              onClick={() => {onPageChange(pageNumber);}}
             >
               {pageNumber}
             </button>
@@ -84,7 +84,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto next page"
           onClick={onNext}
-          disabled={false} // change this line to disable a button.
+          disabled={currentPage == Math.ceil(totalCount / pageSize) ? true : false} // Button is disabled if current page is last
         >
           <ChevronRightIcon />
         </button>
@@ -96,7 +96,7 @@ function Pagination({
         aria-label="Select page size"
         value={pageSize}
         onChange={(e) => {
-          onPageSizeOptionChange(e.target.value);
+          onPageSizeOptionChange(Number(e.target.value));
         }}
       >
         {pageSizeOptions.map((size) => (
@@ -121,7 +121,7 @@ Pagination.propTypes = {
 Pagination.defaultProps = {
   totalCount: 0,
   currentPage: 1,
-  pageSize: 1,
+  pageSize: 15,
   pageSizeOptions: [15, 25, 50, 100],
   onPageChange: () => {},
   onPageSizeOptionChange: () => {},
