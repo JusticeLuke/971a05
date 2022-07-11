@@ -7,17 +7,15 @@ const PAGE_SIZES = [15, 25, 50, 100];
 
 function BlogList() {
   
-  const [currentPage,setCurrentPage]=React.useState(1);
+  const [currentPage,setCurrentPage] = React.useState(1);
   const [currentPaginationData,setCurrentPaginationData] = React.useState(blogs.posts.slice(0, 15));
   const [pageSize, setPageSize] = React.useState(15);
   
   const updateRowsPerPage = (newSize) => {
     setPageSize(newSize);
-    updatePosts();
   };
   const updatePage = (newPage) => {
     setCurrentPage(newPage);
-    updatePosts();
   };
   const updatePosts = () => {
     let pageStart = (currentPage-1)*pageSize;
