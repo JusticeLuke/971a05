@@ -19,14 +19,14 @@ function BlogList() {
     setCurrentPage(newPage);
     updatePosts();
   };
-  const updatePosts = (currentPage) => {
+  const updatePosts = () => {
     let pageStart = (currentPage-1)*pageSize;
     let pageEnd = ((currentPage-1)*pageSize)+pageSize;
     setCurrentPaginationData(blogs.posts.slice(pageStart,pageEnd));
   };
 
   useEffect(() => {
-    updatePosts(currentPage);
+    updatePosts();
   },[currentPage])
   
   return (

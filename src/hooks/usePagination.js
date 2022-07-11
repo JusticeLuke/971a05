@@ -8,14 +8,14 @@ function usePagination({currentPage,  totalCount,  pageSize}) {
   if(totalPageCount <= 5){
     paginationArray = Array.range(1,totalPageCount+1);
   }
-  //Case 2: Display pages as 1 2 3 4.. 99 when current page is 3 or less
-  else if(currentPage <= 3){
-    paginationArray = [1,2,3,4,DOTS,totalPageCount];
+  //Case 2: Display pages as 1 2 3 ... 99 when current page is 2 or less
+  else if(currentPage <= 2){
+    paginationArray = [1,2,3,DOTS,totalPageCount];
   }
-  //Case 3: Display pages as 1...6 7 8 9 when current page is less than or
-  //equal to 3 of the total pages
-  else if (currentPage >= totalPageCount-2){
-    let endSequenceArray = Array.range(currentPage-1,totalPageCount+1);
+  //Case 3: Display pages as 1 ... 7 8 9 when current page is greater than or
+  //equal to total pages-1
+  else if (currentPage >= totalPageCount-1){
+    let endSequenceArray = Array.range(totalPageCount-2,totalPageCount+1);
     paginationArray = [1,DOTS].concat(endSequenceArray);
   }
   //Case 4: Display pages as 1...4 5 6...99 where 5 is the current page
