@@ -69,7 +69,7 @@ function Pagination({
               type="button"
               // Do not remove the aria-label below, it is used for Hatchways automation.
               aria-label={`Goto page ${pageNumber}`}
-              onClick={() => onPageChange(pageNumber)}
+              onClick={() => {console.log("#"+pageNumber);onPageChange(pageNumber);}}
             >
               {pageNumber}
             </button>
@@ -96,7 +96,7 @@ function Pagination({
         aria-label="Select page size"
         value={pageSize}
         onChange={(e) => {
-          onPageSizeOptionChange(e.target.value);
+          onPageSizeOptionChange(Number(e.target.value));
         }}
       >
         {pageSizeOptions.map((size) => (
@@ -121,7 +121,7 @@ Pagination.propTypes = {
 Pagination.defaultProps = {
   totalCount: 0,
   currentPage: 1,
-  pageSize: 1,
+  pageSize: 15,
   pageSizeOptions: [15, 25, 50, 100],
   onPageChange: () => {},
   onPageSizeOptionChange: () => {},
